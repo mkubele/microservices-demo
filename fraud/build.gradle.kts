@@ -8,3 +8,7 @@ dependencies {
     implementation("org.springframework.cloud:spring-cloud-sleuth-zipkin")
     runtimeOnly("org.postgresql:postgresql")
 }
+
+springBoot {
+    mainClass.set("com.kubele.fraud.FraudApplicationKt")
+}

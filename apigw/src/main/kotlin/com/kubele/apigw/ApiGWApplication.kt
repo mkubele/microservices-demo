@@ -1,4 +1,4 @@
-package com.kubele.apigp
+package com.kubele.apigw
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication

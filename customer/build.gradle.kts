@@ -10,3 +10,7 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-amqp")
     runtimeOnly("org.postgresql:postgresql")
 }
+
+springBoot {
+    mainClass.set("com.kubele.customer.CustomerApplicationKt")
+}

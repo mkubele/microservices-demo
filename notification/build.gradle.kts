@@ -10,3 +10,7 @@ dependencies {
     implementation(project(":amqp"))
     runtimeOnly("org.postgresql:postgresql")
 }
+
+springBoot {
+    mainClass.set("com.kubele.notification.NotificationApplicationKt")
+}
