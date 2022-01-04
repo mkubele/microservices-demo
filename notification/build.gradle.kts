@@ -6,5 +6,7 @@ dependencies {
     implementation(project(":clients"))
     implementation("org.springframework.cloud:spring-cloud-starter-sleuth")
     implementation("org.springframework.cloud:spring-cloud-sleuth-zipkin")
+    implementation("org.springframework.boot:spring-boot-starter-amqp")
+    implementation(project(":amqp"))
     runtimeOnly("org.postgresql:postgresql")
 }

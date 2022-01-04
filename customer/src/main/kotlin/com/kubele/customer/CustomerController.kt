@@ -6,11 +6,11 @@ import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
-private val logger = logger {}
-
 @RestController
 @RequestMapping("api/v1/customers")
 class CustomerController(val customerService: CustomerService) {
+
+    private val logger = logger {}
 
     @PostMapping
     fun registerCustomer(@RequestBody customerRegistrationRequest: CustomerRegistrationRequest) {

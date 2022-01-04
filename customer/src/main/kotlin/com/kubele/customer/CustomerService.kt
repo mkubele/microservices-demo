@@ -1,7 +1,7 @@
 package com.kubele.customer
 
+import com.kubele.amqp.RabbitMQMessageProducer
 import com.kubele.clients.fraud.FraudClient
-import com.kubele.clients.notification.NotificationClient
 import com.kubele.clients.notification.NotificationRequest
 import org.springframework.stereotype.Service
 
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service
 class CustomerService(
     private val repository: CustomerRepository,
     private val fraudClient: FraudClient,
-    private val notificationClient: NotificationClient
+    private val rabbitMQMessageProducer: RabbitMQMessageProducer
 ) {
     fun registerCustomer(request: CustomerRegistrationRequest) {
         val customer = Customer(
@@ -27,6 +27,10 @@ class CustomerService(
             message = "Hello from ${customer.firstName} ${customer.lastName}"
         )
 
-        notificationClient.sendNotification(notificationRequest)
+        rabbitMQMessageProducer.publish(
+            notificationRequest,
+            "internal.exchange",
+            "internal.notification.routing-key"
+        )
     }
 }
