@@ -1,15 +1,13 @@
-package com.kubele.notification
+package com.kubele.apigw
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient
-import org.springframework.cloud.openfeign.EnableFeignClients
 
 @SpringBootApplication
 @EnableEurekaClient
-@EnableFeignClients(basePackages = ["com.kubele.clients"])
-class NotificationApplication
+class ApiGWApplication
 
 fun main(args: Array<String>) {
-    runApplication<NotificationApplication>(*args)
+    runApplication<ApiGWApplication>(*args)
 }

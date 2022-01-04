@@ -1,5 +1,6 @@
 rootProject.name = "microservices-demo"
 include(
+    "apigw",
     "clients",
     "customer",
     "eureka-server",
