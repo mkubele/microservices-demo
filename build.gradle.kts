@@ -1,3 +1,4 @@
+import com.google.cloud.tools.jib.gradle.JibExtension
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
@@ -6,6 +7,7 @@ plugins {
     kotlin("jvm") version "1.6.10" apply false
     kotlin("plugin.spring") version "1.6.10" apply false
     id("org.jlleitschuh.gradle.ktlint") version "10.2.1" apply false
+    id("com.google.cloud.tools.jib") version "3.1.4" apply false
 }
 
 subprojects {
@@ -14,6 +16,7 @@ subprojects {
     apply(plugin = "io.spring.dependency-management")
     apply(plugin = "org.springframework.boot")
     apply(plugin = "org.jlleitschuh.gradle.ktlint")
+    apply(plugin = "com.google.cloud.tools.jib")
 
     group = "com.kubele"
     version = "0.0.1-SNAPSHOT"
@@ -36,6 +39,16 @@ subprojects {
         testImplementation("org.springframework.boot:spring-boot-starter-test")
     }
 
+    configure<JibExtension> {
+        from {
+            image = "eclipse-temurin:11"
+        }
+        to {
+            image = "mkubele/${project.name}:$version"
+            tags = setOf("latest")
+        }
+    }
+
     tasks.withType<KotlinCompile> {
         kotlinOptions {
             freeCompilerArgs = listOf("-Xjsr305=strict")
@@ -48,7 +61,7 @@ subprojects {
     }
 
     task("ktlint").dependsOn(
-        "ktlintCheck"
+            "ktlintCheck"
     )
 
     configure<io.spring.gradle.dependencymanagement.dsl.DependencyManagementExtension> {
