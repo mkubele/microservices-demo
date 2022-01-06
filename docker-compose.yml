@@ -1,5 +1,5 @@
 services:
-  postgres-client:
+  postgres:
     container_name: postgres
     image: postgres
     environment:
@@ -28,29 +28,29 @@ services:
       - "15672:15672"
     networks:
       - spring
-  eureka-server:
-    image: mkubele/eureka-server:latest
-    container_name: eureka-server
-    ports:
-      - "8761:8761"
-    environment:
-      - SPRING_PROFILES_ACTIVE=docker
-    networks:
-      - spring
-    depends_on:
-      - zipkin
-  apigw:
-    image: mkubele/apigw:latest
-    container_name: apigw
-    ports:
-      - "8083:8083"
-    environment:
-      - SPRING_PROFILES_ACTIVE=docker
-    networks:
-      - spring
-    depends_on:
-      - zipkin
-      - eureka-server
+#  eureka-server:
+#    image: mkubele/eureka-server:latest
+#    container_name: eureka-server
+#    ports:
+#      - "8761:8761"
+#    environment:
+#      - SPRING_PROFILES_ACTIVE=docker
+#    networks:
+#      - spring
+#    depends_on:
+#      - zipkin
+#  apigw:
+#    image: mkubele/apigw:latest
+#    container_name: apigw
+#    ports:
+#      - "8083:8083"
+#    environment:
+#      - SPRING_PROFILES_ACTIVE=docker
+#    networks:
+#      - spring
+#    depends_on:
+#      - zipkin
+#      - eureka-server
   customer:
     image: mkubele/customer:latest
     container_name: customer
@@ -63,8 +63,7 @@ services:
       - postgres
     depends_on:
       - zipkin
-      - eureka-server
-      - postgres-client
+      - postgres
       - rabbitmq
   fraud:
     image: mkubele/fraud:latest
@@ -78,8 +77,7 @@ services:
       - postgres
     depends_on:
       - zipkin
-      - eureka-server
-      - postgres-client
+      - postgres
       - rabbitmq
   notification:
     image: mkubele/notification:latest
@@ -93,23 +91,8 @@ services:
       - postgres
     depends_on:
       - zipkin
-      - eureka-server
-      - postgres-client
+      - postgres
       - rabbitmq
-  #  postgres-fraud:
-  #    container_name: postgres-fraud
-  #    image: postgres
-  #    environment:
-  #      POSTGRES_USER: user
-  #      POSTGRES_PASSWORD: password
-  #      PGDATA: /data/postgres
-  #    volumes:
-  #      - postgres:/data/postgres
-  #    ports:
-  #      - "5433:5433"
-  #    networks:
-  #      - postgres
-  #    restart: unless-stopped
 
   pgadmin:
     container_name: pgadmin

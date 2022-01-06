@@ -2,10 +2,12 @@ package com.kubele.notification
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
+import org.springframework.context.annotation.PropertySource
 
 @SpringBootApplication(
     scanBasePackages = ["com.kubele.notification", "com.kubele.amqp"]
 )
+@PropertySource(value = ["classpath:clients-\${spring.profiles.active}.properties"])
 class NotificationApplication {
 
 //    @Bean
