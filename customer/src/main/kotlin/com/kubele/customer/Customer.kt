@@ -12,7 +12,7 @@ data class Customer(
     @SequenceGenerator(name = "customer_id_sequence", sequenceName = "customer_id_sequence")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "customer_id_sequence")
     val id: Int = 0,
-    val firstName: String,
-    val lastName: String,
-    val email: String
+    val firstName: String = "",
+    val lastName: String = "",
+    val email: String = ""
 )

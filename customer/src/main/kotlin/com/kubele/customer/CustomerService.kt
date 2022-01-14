@@ -33,4 +33,8 @@ class CustomerService(
             "internal.notification.routing-key"
         )
     }
+
+    fun getAllCustomers(): List<Customer> {
+        return repository.findAll()
+    }
 }

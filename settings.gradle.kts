@@ -1,5 +1,6 @@
 rootProject.name = "microservices-demo"
 include(
+    "amqp",
     "apigw",
     "clients",
     "customer",
@@ -7,4 +8,3 @@ include(
     "fraud",
     "notification"
 )
-include("amqp")
