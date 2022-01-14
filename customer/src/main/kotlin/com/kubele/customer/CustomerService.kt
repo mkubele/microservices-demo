@@ -45,6 +45,10 @@ class CustomerService(
         )
     }
 
+    fun getAllCustomers(): List<Customer> {
+        return repository.findAll()
+    }
+
     private fun isEmailValid(email: String): Boolean {
         return email.matches(EMAIL_VALIDATION_REGEX.toRegex())
     }
