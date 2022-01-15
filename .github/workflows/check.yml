@@ -28,6 +28,7 @@ jobs:
       with:
         arguments: assemble ktlint
     - name: publish reports
+      if: always()
       uses: actions/upload-artifact@v2
       with: 
         name: reports
