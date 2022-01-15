@@ -27,3 +27,9 @@ jobs:
       uses: gradle/gradle-build-action@4137be6a8bf7d7133955359dbd952c0ca73b1021
       with:
         arguments: assemble ktlint
+    - name: publish reports
+      uses: actions/upload-artifact@v2
+      with: 
+        name: reports
+        path: '**/build/reports/ktlint/ktlintMainSourceSetCheck/ktlintMainSourceSetCheck.txt'
+        if-no-files-found: ignore
