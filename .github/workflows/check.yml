@@ -32,5 +32,6 @@ jobs:
       uses: actions/upload-artifact@v2
       with: 
         name: reports
-        path: '**/build/reports/ktlint/ktlintMainSourceSetCheck/ktlintMainSourceSetCheck.txt'
+        # path: '**/build/reports/ktlint/ktlintMainSourceSetCheck/ktlintMainSourceSetCheck.txt'
+        path: customer/build/reports/ktlint/ktlintMainSourceSetCheck/ktlintMainSourceSetCheck.txt        
         if-no-files-found: ignore
