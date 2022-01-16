@@ -51,6 +51,10 @@ jobs:
           resource-group: ${{ env.RESOURCE_GROUP }}
           cluster-name: ${{ env.CLUSTER_NAME }}
         id: login
+      - run: |
+          sed -i 's/BUILD_VERSION/${{ env.BUILD_VERSION }}/g' k8s/minikube/services/customer/deployment.yml
+          sed -i 's/BUILD_VERSION/${{ env.BUILD_VERSION }}/g' k8s/minikube/services/fraud/deployment.yml
+          sed -i 's/BUILD_VERSION/${{ env.BUILD_VERSION }}/g' k8s/minikube/services/notification/deployment.yml
       - name: K8s Deploy
         uses: azure/k8s-deploy@v1
         with:
