@@ -18,8 +18,10 @@ subprojects {
     apply(plugin = "org.jlleitschuh.gradle.ktlint")
     apply(plugin = "com.google.cloud.tools.jib")
 
+    val buildVersion = findProperty("buildVersion") as? String ?: "0.0.1-SNAPSHOT"
+
     group = "com.kubele"
-    version = "0.0.1-SNAPSHOT"
+    version = buildVersion
 
     repositories {
         mavenCentral()
