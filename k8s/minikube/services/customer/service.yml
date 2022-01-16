@@ -2,6 +2,8 @@ apiVersion: v1
 kind: Service
 metadata:
   name: customer
+  annotations:
+    service.beta.kubernetes.io/azure-dns-label-name: microservices-demo
 spec:
   selector:
     app: customer
@@ -9,3 +11,4 @@ spec:
     - port: 80
       targetPort: 8080
   type: LoadBalancer
+  loadBalancerIP: 20.113.83.16

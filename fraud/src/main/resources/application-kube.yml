@@ -4,9 +4,9 @@ spring:
   application:
     name: fraud
   datasource:
-    password: password
-    url: jdbc:postgresql://postgres:5432/fraud
-    username: user
+    username: ${DB_USER}
+    password: ${DB_PASSWORD}
+    url: ${DB_URL}
   jpa:
     hibernate:
       ddl-auto: create-drop
