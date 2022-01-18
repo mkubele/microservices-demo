@@ -9,7 +9,6 @@ dependencies {
     implementation("org.springframework.cloud:spring-cloud-sleuth-zipkin")
     implementation("org.springframework.boot:spring-boot-starter-amqp")
     runtimeOnly("org.postgresql:postgresql")
-    implementation("org.springframework.boot:spring-boot-starter-thymeleaf:2.6.2")
 }
 
 springBoot {

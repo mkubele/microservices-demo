@@ -17,8 +17,4 @@ class NotificationService(private val repository: NotificationRepository) {
         )
         repository.save(notification)
     }
-
-    fun getAllNotifications(): List<Notification> {
-        return repository.findAll()
-    }
 }
