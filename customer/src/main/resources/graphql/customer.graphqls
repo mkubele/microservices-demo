@@ -1,0 +1,20 @@
+schema {
+    query: CustomerQuery
+    mutation: CustomerMutation
+}
+
+
+type CustomerQuery {
+    customers: [Customer]
+}
+
+type Customer {
+    id: Int
+    firstName: String
+    lastName: String
+    email: String
+}
+
+type CustomerMutation {
+    registerCustomer(firstName: String, lastName: String, email: String): Customer
+}

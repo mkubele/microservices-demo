@@ -12,7 +12,7 @@ class CustomerService(
     private val fraudClient: FraudClient,
     private val rabbitMQMessageProducer: RabbitMQMessageProducer
 ) {
-    fun registerCustomer(request: CustomerRegistrationRequest) {
+    fun registerCustomer(request: CustomerRegistrationRequest): Customer {
         val customer = Customer(
             firstName = request.firstName,
             lastName = request.lastName,
@@ -39,6 +39,8 @@ class CustomerService(
             "internal.exchange",
             "internal.notification.routing-key"
         )
+
+        return customer
     }
 
     fun getAllCustomers(): List<Customer> {

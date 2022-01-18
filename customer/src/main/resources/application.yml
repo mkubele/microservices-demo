@@ -22,3 +22,11 @@ eureka:
     service-url:
       defaultZone: http://localhost:8761/eureka
     enabled: false
+
+graphql:
+  servlet:
+    mapping: /api/v2/customers
+    exception-handlers-enabled: true
+graphiql:
+  mapping: /graphiql
+  endpoint: /api/v2/customers
