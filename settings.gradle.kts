@@ -6,5 +6,6 @@ include(
     "customer",
     "eureka-server",
     "fraud",
-    "notification"
+    "notification",
+    "utils"
 )

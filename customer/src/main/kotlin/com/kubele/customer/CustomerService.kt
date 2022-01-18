@@ -3,6 +3,7 @@ package com.kubele.customer
 import com.kubele.amqp.RabbitMQMessageProducer
 import com.kubele.clients.fraud.FraudClient
 import com.kubele.clients.notification.NotificationRequest
+import com.kubele.utils.EmailValidator
 import org.springframework.stereotype.Service
 
 @Service
@@ -11,18 +12,13 @@ class CustomerService(
     private val fraudClient: FraudClient,
     private val rabbitMQMessageProducer: RabbitMQMessageProducer
 ) {
-    companion object {
-        private const val EMAIL_VALIDATION_REGEX =
-            "^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$"
-    }
-
     fun registerCustomer(request: CustomerRegistrationRequest) {
         val customer = Customer(
             firstName = request.firstName,
             lastName = request.lastName,
             email = request.email
         )
-        customer.email.let { if (!isEmailValid(it)) throw InvalidEmailException(it) }
+        customer.email.let { if (!EmailValidator.isValid(it)) throw InvalidEmailException(it) }
         repository.run {
             if (selectExistsByEmail(customer.email)) {
                 throw ExistingEmailException(customer.email)
@@ -47,10 +43,6 @@ class CustomerService(
 
     fun getAllCustomers(): List<Customer> {
         return repository.findAll()
-    }
-
-    private fun isEmailValid(email: String): Boolean {
-        return email.matches(EMAIL_VALIDATION_REGEX.toRegex())
     }
 }
 
