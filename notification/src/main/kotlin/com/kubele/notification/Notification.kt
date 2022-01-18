@@ -11,9 +11,9 @@ data class Notification(
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     val id: Int = 0,
-    val toCustomerId: Int,
-    val toCustomerEmail: String,
-    val sender: String,
-    val message: String,
-    val sentAt: LocalDateTime
+    val toCustomerId: Int = 0,
+    val toCustomerEmail: String = "",
+    val sender: String = "",
+    val message: String = "",
+    val sentAt: LocalDateTime = LocalDateTime.MIN
 )
